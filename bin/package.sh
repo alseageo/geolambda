@@ -18,6 +18,10 @@ strip $DEPLOY_DIR/lib/* || true
 mkdir -p $DEPLOY_DIR/share
 rsync -ax $PREFIX/share/gdal $DEPLOY_DIR/share/
 
+# copy gdal binaries over
+rsync -ax $PREFIX/bin/gdal* $DEPLOY_DIR/bin/
+rsync -ax $PREFIX/bin/ogr* $DEPLOY_DIR/bin/
+
 # zip up deploy package
 cd $DEPLOY_DIR
 zip -ruq ../lambda-deploy.zip ./
