@@ -22,6 +22,9 @@ rsync -ax $PREFIX/share/gdal $DEPLOY_DIR/share/
 rsync -ax $PREFIX/bin/gdal* $DEPLOY_DIR/bin/
 rsync -ax $PREFIX/bin/ogr* $DEPLOY_DIR/bin/
 
+# needed by ogr2ogr
+ldd /usr/local/bin/ogr2ogr | grep "=> /" | awk '{print $3}' | xargs -I '{}' cp -v '{}' $DEPLOY_DIR/lib/
+
 # zip up deploy package
 cd $DEPLOY_DIR
 zip -ruq ../lambda-deploy.zip ./
