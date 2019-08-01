@@ -8,6 +8,7 @@ RUN \
     yum makecache fast; \
     yum install -y wget libpng-devel nasm; \
     yum install -y bash-completion --enablerepo=epel; \
+    yum install -y postgresql96-devel; \
     yum clean all; \
     yum autoremove
 
@@ -192,6 +193,7 @@ RUN \
         --with-jpeg=${PREFIX} \
         --with-threads=yes \
 		--with-curl=${PREFIX}/bin/curl-config \
+        --with-pg=/usr/bin/pg_config \
         --without-python \
         --without-libtool \
         --with-geos=$PREFIX/bin/geos-config \
